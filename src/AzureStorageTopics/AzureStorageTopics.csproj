@@ -1,11 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>0.0.1</PackageVersion>
-		<IsPackable>true</IsPackable>
 		<Nullable>enable</Nullable>
 		<TargetFrameworks>netstandard2.1</TargetFrameworks>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageVersion>0.0.1</PackageVersion>
+		<IsPackable>true</IsPackable>
+		<Authors>davidguida</Authors>
+		<Product>AzureStorageTopics</Product>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<Title>Azure Storage Topics client library</Title>
+		<PackageDescription>Custom Output Binding for Azure Functions that adds support for Topics on Storage Accounts using Queues as underlying technology.</PackageDescription>
+		<Copyright>Copyright 2024</Copyright>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageTags>azure storage-account topics queues messaging dotnet dotnet-core events</PackageTags>
+		<PackageOutputPath>../../packages/</PackageOutputPath>
+		<RepositoryUrl>https://github.com/mizrael/AzureStorageTopics/</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/mizrael/AzureStorageTopics/</PackageProjectUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -18,5 +37,15 @@
 
 		<InternalsVisibleTo Include="AzureStorageTopics.Tests" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="../../readme.md" Pack="true" PackagePath="\">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
 
 </Project>
