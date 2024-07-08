@@ -1,4 +1,6 @@
 # Azure Storage Topics
+[![Tests](https://github.com/mizrael/AzureStorageTopics/actions/workflows/dotnet.yml/badge.svg)](https://github.com/mizrael/AzureStorageTopics/actions/workflows/dotnet.yml)
+[![Nuget](https://img.shields.io/nuget/v/AzureStorageTopics?style=plastic)](https://www.nuget.org/packages/AzureStorageTopics/)
 
 This project aims to provide a **very simple** implementation of Topics over Azure Storage Queues, similar to [Topics](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions) in Azure Service Bus.
 
@@ -7,7 +9,9 @@ Simply because being able to forward the same message (more or less) to multiple
 
 ### How does it work?
 
-The underlying idea is  Messages can be sent to a virtual "topic", which in turn would forward it to the registered "subscriptions":
+The underlying idea is  Messages can be sent to a virtual "topic", which in turn would forward it to the registered "subscriptions".
+
+Simply add the [Nuget package](https://www.nuget.org/packages/AzureStorageTopics/) to your Azure Functions project, then add the Output binding: 
 
 ```csharp
 [FunctionName(nameof(SendToTopic))]
@@ -55,4 +59,4 @@ The default value is `AzureWebJobsStorage`.
 ### TODO
 - more tests
 - support for Isolated mode
-- publish to Nuget
+
