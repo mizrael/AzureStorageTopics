@@ -1,7 +1,13 @@
 # Azure Storage Topics
 
-This project aims to provide a **very simple** implementation of Topics over Azure Storage Queues.
-The underlying idea is similar to [Topics](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions) in Azure Service Bus. Messages can be sent to a virtual "topic", which in turn would forward it to the registered subscriptions:
+This project aims to provide a **very simple** implementation of Topics over Azure Storage Queues, similar to [Topics](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions) in Azure Service Bus.
+
+### Why?
+Simply because being able to forward the same message (more or less) to multiple queues in one go is very convenient. Single queues are useful when dealing with _Commands_, which would expect to be pulled and processed by a single Consumer. Moreover, the Producer is aware and is expecting that there's a Consumer waiting on the other side. But when we need to broadcast an _Event_ instead, the Producer doesn't know how many different Consumers there will be. Nor cares. The Producer's only goal is to inform the world that _something happened_.
+
+### How does it work?
+
+The underlying idea is  Messages can be sent to a virtual "topic", which in turn would forward it to the registered "subscriptions":
 
 ```csharp
 [FunctionName(nameof(SendToTopic))]
@@ -37,6 +43,16 @@ Subscriptions can be configured directly in the `host.json` file:
 }
 ```
 
+The connection string to the Storage Account can be specified by providing the `ConnectionSettingName` property to the `StorageTopic` attribute:
+```csharp
+[FunctionName(nameof(SendToTopic))]
+public static async Task<IActionResult> SendToTopic(
+    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+    [StorageTopic("MyTopic", ConnectionSettingName="")] IAsyncCollector<string> outputTopic)
+```
+The default value is `AzureWebJobsStorage`.
+
 ### TODO
 - more tests
+- support for Isolated mode
 - publish to Nuget
