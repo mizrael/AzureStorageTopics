@@ -2,6 +2,7 @@
 {
     internal static class Constants
     {
-        internal const string StorageTopicsExtensionName = "AzureStorageTopics";
+        public const string StorageTopicsExtensionName = "AzureStorageTopics";
+        public const string DefaultConnectionStringSettingsName = "AzureWebJobsStorage";
     }
 }

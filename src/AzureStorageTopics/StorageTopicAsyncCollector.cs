@@ -27,7 +27,7 @@ namespace AzureStorageTopics
 
         public async Task AddAsync(string message, CancellationToken cancellationToken = default)
         {
-            var connectionStringSettingName = _topicAttribute.ConnectionSettingName ?? "AzureWebJobsStorage";
+            var connectionStringSettingName = _topicAttribute.ConnectionSettingName ?? Constants.DefaultConnectionStringSettingsName;
             var connectionString = _connectionStringProvider.GetConnectionString(connectionStringSettingName);
            
             var subscriptions = await _subscriptionsProvider.GetSubscriptionsAsync(
