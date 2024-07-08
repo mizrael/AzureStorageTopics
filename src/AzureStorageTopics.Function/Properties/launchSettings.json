@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "AzureStorageTopics.Function": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7107",
+      "launchBrowser": false
+    }
+  }
+}
