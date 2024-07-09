@@ -20,6 +20,7 @@ namespace AzureStorageTopics
             builder.Services
                 .Configure<TopicsConfig>(config.GetSection("AzureFunctionsJobHost:extensions:storageTopics"))
                 .AddSingleton<IValidateOptions<TopicsConfig>, TopicsConfigValidator>()
+                .AddSingleton<ISubscriptionFactory, SubscriptionFactory>()
                 .AddSingleton<IConnectionStringProvider>(ctx =>
                 {
                     var config = ctx.GetRequiredService<IConfiguration>();
@@ -28,7 +29,8 @@ namespace AzureStorageTopics
                 .AddSingleton<ISubscriptionsProvider, SubscriptionsProvider>(ctx =>
                 {
                     var topicsConfig = ctx.GetRequiredService<IOptions<TopicsConfig>>();
-                    return new SubscriptionsProvider(topicsConfig.Value);
+                    var factory = ctx.GetRequiredService<ISubscriptionFactory>();
+                    return new SubscriptionsProvider(topicsConfig.Value, factory);
                 });
 
             builder.AddExtension<StorageTopicConfigProvider>();

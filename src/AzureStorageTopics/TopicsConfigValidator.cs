@@ -24,15 +24,15 @@ namespace AzureStorageTopics
                     return ValidateOptionsResult.Fail($"The topic '{key}' does not contain any subscriptions.");
                 }
 
-                var topicsDict = new HashSet<string>();
+                var subsDic = new HashSet<string>();
                 foreach (var subscription in topic.Subscriptions)
                 {
-                    if (topicsDict.Contains(subscription.Name))
+                    if (subsDic.Contains(subscription.Name))
                     {
-                        return ValidateOptionsResult.Fail($"The topic '{key}' contains a duplicate subscription '{subscription}'.");
+                        return ValidateOptionsResult.Fail($"The topic '{key}' contains a duplicate subscription '{subscription.Name}'.");
                     }
 
-                    topicsDict.Add(subscription.Name);
+                    subsDic.Add(subscription.Name);
                 }
             }
 

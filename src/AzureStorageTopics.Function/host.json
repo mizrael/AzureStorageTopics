@@ -11,6 +11,7 @@
   },
   "extensions": {
     "storageTopics": {
+      "cacheClient": true,
       "topics": {
         "MyTopic": {
           "subscriptions": [

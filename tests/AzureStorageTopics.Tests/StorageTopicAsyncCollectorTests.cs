@@ -1,7 +1,5 @@
-using NSubstitute;
-using AzureStorageTopics;
 using Azure.Storage.Queues;
-using NSubstitute.Extensions;
+using NSubstitute;
 
 namespace AzureStorageTopics.Tests
 {
