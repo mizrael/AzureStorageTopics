@@ -47,7 +47,12 @@ Subscriptions can be configured directly in the `host.json` file:
 }
 ```
 
-The connection string to the Storage Account can be specified by providing the `ConnectionSettingName` property to the `StorageTopic` attribute:
+The library will automatically create the queues if not existing, using this naming convention: `topic-subscription` , lowercase:
+
+<img width="500" alt="image" src="https://github.com/mizrael/AzureStorageTopics/assets/1432872/2853a03d-d893-4248-b2c5-1ed9eeaa1272">
+
+
+The setting containing the connection string to the Storage Account can be specified by providing the `ConnectionSettingName` property to the `StorageTopic` attribute:
 ```csharp
 [FunctionName(nameof(SendToTopic))]
 public static async Task<IActionResult> SendToTopic(
