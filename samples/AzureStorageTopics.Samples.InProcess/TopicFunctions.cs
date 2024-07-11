@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace AzureStorageTopics.Function;
+namespace AzureStorageTopics.Samples.InProcess;
 
 public static class TopicFunctions
 {

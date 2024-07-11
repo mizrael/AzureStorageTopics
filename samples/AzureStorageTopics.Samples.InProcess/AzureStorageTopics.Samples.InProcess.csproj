@@ -7,7 +7,7 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.4.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AzureStorageTopics\AzureStorageTopics.csproj" />
+    <ProjectReference Include="..\..\src\AzureStorageTopics\AzureStorageTopics.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
